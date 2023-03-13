@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "423302181989",
+    "project_id": "catch-app-5b1f0",
+    "storage_bucket": "catch-app-5b1f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423302181989:android:b26cb1c62d6ab19e12428c",
+        "android_client_info": {
+          "package_name": "com.example.catch_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423302181989-8j6sc5ngc3nr58v2jhuo2sgklspjghkq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ0tSK7xIiHMO0ZwdqH9PI-Fjx7tLxxXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423302181989-8j6sc5ngc3nr58v2jhuo2sgklspjghkq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
