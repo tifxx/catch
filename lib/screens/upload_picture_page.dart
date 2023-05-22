@@ -3,18 +3,18 @@ import 'package:catch_app/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../widgets/profile_picture.dart';
+import '../widgets/upload_picture.dart';
 
-class ProfilePicturePage extends StatefulWidget {
+class UploadPicturePage extends StatefulWidget {
   static const routeName = '/uploadPhoto';
 
-  const ProfilePicturePage({super.key});
+  const UploadPicturePage({super.key});
 
   @override
-  State<ProfilePicturePage> createState() => _ProfilePicturePageState();
+  State<UploadPicturePage> createState() => _UploadPicturePageState();
 }
 
-class _ProfilePicturePageState extends State<ProfilePicturePage> {
+class _UploadPicturePageState extends State<UploadPicturePage> {
   FirebaseService _firebaseService = GetIt.I.get<FirebaseService>();
   ReusableWidgets reusableWidgets = ReusableWidgets();
 
@@ -26,7 +26,7 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ProfilePicture(),
+            UploadPicture(),
           ],
         ),
       ),

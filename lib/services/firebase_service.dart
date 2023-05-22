@@ -1,11 +1,10 @@
 import 'dart:io';
-
-import 'package:catch_app/model/app_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
+import 'package:catch_app/model/post.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FirebaseService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -55,8 +54,7 @@ class FirebaseService {
   }
 
   void updateProfilePicture(File image) async {
-    final ref =
-        _firebaseStorage.child('images');
+    final ref = _firebaseStorage.child('images');
     final task = ref.putFile(image);
     final snapshot = await task;
     final url = await snapshot.ref.getDownloadURL();
@@ -68,8 +66,25 @@ class FirebaseService {
         .catchError((error) => print("Failed to update user: $error"));
   }
 
-  Future<Image> getPicture(String pictureFromDb) async {
-    var url = await _firebaseStorage.child(pictureFromDb).getDownloadURL();
-    return Image.network(url);
+  void uploadPicture(File image) async {
+    final ref = _firebaseStorage.child('images');
+    final task = ref.putFile(image);
+    final snapshot = await task;
+    final url = await snapshot.ref.getDownloadURL();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('image', url);
   }
+
+  Future addPostToDB({required Post post}) async {
+    final docItem = FirebaseFirestore.instance.collection('posts').doc(post.id);
+    final json = post.toJson();
+    await docItem.set(json);
+  }
+
+  Future<List<Post>> readItems() => FirebaseFirestore.instance
+      .collection('posts')
+      .get()
+      .then((response) => response.docs
+          .map((element) => Post.fromJson(element.data()))
+          .toList());
 }

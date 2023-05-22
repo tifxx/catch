@@ -1,5 +1,3 @@
-import 'package:catch_app/screens/home_page.dart';
-import 'package:catch_app/screens/my_account_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -45,6 +43,20 @@ class ReusableWidgets {
                 PopupMenuItem<int>(
                   value: 2,
                   child: Row(children: [
+                    Icon(Icons.add),
+                    Text(" Add post"),
+                  ]),
+                ),
+                PopupMenuItem<int>(
+                  value: 3,
+                  child: Row(children: [
+                    Icon(Icons.location_on_outlined),
+                    Text(" Show map"),
+                  ]),
+                ),
+                PopupMenuItem<int>(
+                  value: 4,
+                  child: Row(children: [
                     Icon(Icons.logout),
                     Text(" Log out"),
                   ]),
@@ -57,6 +69,10 @@ class ReusableWidgets {
               } else if (value == 1) {
                 Navigator.pushNamed(context, '/myAccount');
               } else if (value == 2) {
+                Navigator.pushNamed(context, '/addPost');
+              } else if (value == 3) {
+                Navigator.pushNamed(context, '/showMap');
+              } else if (value == 4) {
                 _firebaseService.logOut();
                 Navigator.pushNamed(context, '/auth');
               }
